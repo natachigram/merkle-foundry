@@ -54,23 +54,23 @@ contract MerkleTest is Test {
 
     function testFailInvalidAddress() public {
         address user3 = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
-        bool success = airdrop.claim(data.proof, user3, user1Amt);
-        assertTrue(success);
-        assertEq(airdrop.balanceOf(user1), user1Amt);
+        airdrop.claim(data.proof, user3, user1Amt);
+        // assertFalse(success);
+        // assertEq(airdrop.balanceOf(user3), user1Amt);
     }
 
     function testFailInvalidAmount() public {
         uint256 user3Amt = 400 ether;
-        bool success = airdrop.claim(data.proof, user1, user3Amt);
-        assertTrue(success);
-        assertEq(airdrop.balanceOf(user1), user1Amt);
+        airdrop.claim(data.proof, user1, user3Amt);
+        // assertFalse(success);
+        // assertEq(airdrop.balanceOf(user1), user1Amt);
     }
 
     function testFailInvalidProof() public {
         bytes32[] memory eProof;
-        bool success = airdrop.claim(eProof, user1, user1Amt);
-        assertTrue(success);
-        assertEq(airdrop.balanceOf(user1), user1Amt);
+        airdrop.claim(eProof, user1, user1Amt);
+        // assertFalse(success);
+        // assertEq(airdrop.balanceOf(user1), user1Amt);
     }
 
     function testClaimEvents() public {
